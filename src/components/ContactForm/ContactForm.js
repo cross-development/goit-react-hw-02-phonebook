@@ -1,0 +1,51 @@
+//Core
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+//Styles
+import styles from './ContactForm.module.css';
+
+export class ContactForm extends Component {
+	static propTypes = {};
+
+	state = {
+		name: '',
+		number: '',
+	};
+
+	handleChange = e => {
+		const { name, value } = e.target;
+
+		this.setState({ [name]: value });
+	};
+
+	handleSubmit = e => {
+		e.preventDefault();
+
+		const { name, number } = this.state;
+
+		this.props.onAddContact(name, number);
+		this.setState({ name: '', number: '' });
+	};
+
+	render() {
+		const { name, number } = this.state;
+
+		return (
+			<form onSubmit={this.handleSubmit}>
+				<label>
+					Name
+					<input name="name" value={name} type="text" onChange={this.handleChange} />
+				</label>
+
+				<label>
+					Number
+					<input name="number" value={number} type="text" onChange={this.handleChange} />
+				</label>
+
+				<button type="submit">Add contact</button>
+			</form>
+		);
+	}
+}
+
+export default ContactForm;
