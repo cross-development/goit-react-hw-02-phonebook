@@ -6,7 +6,7 @@ import styles from './Filter.module.css';
 
 const Filter = ({ title, value, onChangeFilter }) => {
 	return (
-		<div>
+		<div className={styles.filterWrapper}>
 			<label>
 				{title}
 				<input
@@ -24,6 +24,10 @@ Filter.defaultProps = {
 	title: '',
 };
 
-Filter.propTypes = {};
+Filter.propTypes = {
+	title: PropTypes.string.isRequired,
+	value: PropTypes.string.isRequired,
+	onChangeFilter: PropTypes.func.isRequired,
+};
 
 export default Filter;

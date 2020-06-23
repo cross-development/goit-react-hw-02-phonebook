@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 
 export class ContactForm extends Component {
-	static propTypes = {};
+	static propTypes = {
+		onAddContact: PropTypes.func.isRequired,
+	};
 
 	state = {
 		name: '',
@@ -31,18 +33,24 @@ export class ContactForm extends Component {
 		const { name, number } = this.state;
 
 		return (
-			<form onSubmit={this.handleSubmit}>
+			<form className={styles.form} onSubmit={this.handleSubmit}>
 				<label>
 					Name
-					<input name="name" value={name} type="text" onChange={this.handleChange} />
+					<input
+						className={styles.formInput}
+						name="name"
+						value={name}
+						type="text"
+						onChange={this.handleChange}
+					/>
 				</label>
 
 				<label>
 					Number
-					<input name="number" value={number} type="text" onChange={this.handleChange} />
+					<input className={styles.formInput} name="number" value={number} type="text" onChange={this.handleChange} />
 				</label>
 
-				<button type="submit">Add contact</button>
+				<button className={styles.contactFormButton} type="submit">Add contact</button>
 			</form>
 		);
 	}

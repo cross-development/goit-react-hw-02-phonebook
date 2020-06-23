@@ -1,6 +1,5 @@
 //Core
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 //Components
 import Section from '../Section/Section';
 import ContactForm from '../ContactForm/ContactForm';
@@ -12,12 +11,24 @@ import { v4 as uuid } from 'uuid';
 import './App.module.css';
 
 export class App extends Component {
-	static propTypes = {};
-
 	state = {
 		contacts: [],
 		filter: '',
 	};
+
+	// addContact = (name, number) => {
+	// 	const contact = {
+	// 		id: uuid(),
+	// 		name,
+	// 		number,
+	// 	};
+
+	// 	this.setState(prevState => {
+	// 		return {
+	// 			contacts: [...prevState.contacts, contact],
+	// 		};
+	// 	});
+	// };
 
 	addContact = (name, number) => {
 		const contact = {
@@ -33,6 +44,22 @@ export class App extends Component {
 		});
 	};
 
+	getVisibleContacts = () => {
+		const { contacts, filter } = this.state;
+
+		return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
+	};
+
+	// handleCheckName = contactName => {
+	// 	this.setState(prevState => ({
+	// 		contacts: prevState.contacts.map(contact =>
+	// 			contact.name.includes(contactName)
+	// 				? alert('Alert')
+	// 				: { contacts: [...prevState.contacts, contact] },
+	// 		),
+	// 	}));
+	// };
+
 	removeContact = contactId => {
 		this.setState(prevState => {
 			return {
@@ -43,12 +70,6 @@ export class App extends Component {
 
 	handleChangeFilter = filter => {
 		this.setState({ filter });
-	};
-
-	getVisibleContacts = () => {
-		const { contacts, filter } = this.state;
-
-		return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
 	};
 
 	render() {
@@ -72,7 +93,11 @@ export class App extends Component {
 					)}
 
 					{contacts.length > 0 && (
-						<ContactList contacts={visibleContact} onRemoveContact={this.removeContact} />
+						<ContactList
+							contacts={visibleContact}
+							onRemoveContact={this.removeContact}
+							// onCheckName={this.handleCheckName}
+						/>
 					)}
 				</Section>
 			</>

@@ -8,7 +8,7 @@ import styles from './ContactList.module.css';
 
 const ContactList = ({ contacts, onRemoveContact }) => {
 	return (
-		<ul>
+		<ul className={styles.contactList}>
 			{contacts.map(({ id, name, number }) => (
 				<ContactListItem
 					key={id}
@@ -21,6 +21,15 @@ const ContactList = ({ contacts, onRemoveContact }) => {
 	);
 };
 
-ContactList.propTypes = {};
+ContactList.propTypes = {
+	contacts: PropTypes.arrayOf(
+		PropTypes.exact({
+			id: PropTypes.string.isRequired,
+			name: PropTypes.string.isRequired,
+			number: PropTypes.string.isRequired,
+		}),
+	).isRequired,
+	onRemoveContact: PropTypes.func.isRequired,
+};
 
 export default ContactList;
