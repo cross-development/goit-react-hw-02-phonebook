@@ -1,10 +1,10 @@
 //Core
 import React, { Component } from 'react';
 //Components
+import Filter from '../Filter/Filter';
 import Section from '../Section/Section';
 import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
-import Filter from '../Filter/Filter';
 //Utils
 import { v4 as uuid } from 'uuid';
 //Styles
