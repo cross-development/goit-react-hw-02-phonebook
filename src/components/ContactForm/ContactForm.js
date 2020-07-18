@@ -38,9 +38,9 @@ export class ContactForm extends Component {
 					Name
 					<input
 						className={styles.formInput}
+						type="text"
 						name="name"
 						value={name}
-						type="text"
 						onChange={this.handleChange}
 					/>
 				</label>
@@ -49,9 +49,9 @@ export class ContactForm extends Component {
 					Number
 					<input
 						className={styles.formInput}
+						type="text"
 						name="number"
 						value={number}
-						type="text"
 						onChange={this.handleChange}
 					/>
 				</label>
