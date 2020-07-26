@@ -7,8 +7,6 @@ import ContactForm from '../ContactForm/ContactForm';
 import ContactList from '../ContactList/ContactList';
 //Utils
 import { v4 as uuid } from 'uuid';
-//Styles
-import './App.module.css';
 
 export class App extends Component {
 	state = {
@@ -33,11 +31,7 @@ export class App extends Component {
 			number,
 		};
 
-		this.setState(prevState => {
-			return {
-				contacts: [...prevState.contacts, contact],
-			};
-		});
+		this.setState(prevState => ({ contacts: [...prevState.contacts, contact] }));
 	};
 
 	getVisibleContacts = () => {
@@ -47,16 +41,12 @@ export class App extends Component {
 	};
 
 	removeContact = contactId => {
-		this.setState(prevState => {
-			return {
-				contacts: prevState.contacts.filter(({ id }) => id !== contactId),
-			};
-		});
+		this.setState(prevState => ({
+			contacts: prevState.contacts.filter(({ id }) => id !== contactId),
+		}));
 	};
 
-	handleChangeFilter = filter => {
-		this.setState({ filter });
-	};
+	handleChangeFilter = filter => this.setState({ filter });
 
 	render() {
 		const { contacts, filter } = this.state;

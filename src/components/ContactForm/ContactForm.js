@@ -23,9 +23,7 @@ export class ContactForm extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 
-		const { name, number } = this.state;
-
-		this.props.onAddContact(name, number);
+		this.props.onAddContact(this.state.name, this.state.number);
 		this.setState({ name: '', number: '' });
 	};
 
@@ -37,9 +35,10 @@ export class ContactForm extends Component {
 				<label>
 					Name
 					<input
-						className={styles.formInput}
+						className={styles.input}
 						type="text"
 						name="name"
+						autoComplete="off"
 						value={name}
 						onChange={this.handleChange}
 					/>
@@ -48,15 +47,16 @@ export class ContactForm extends Component {
 				<label>
 					Number
 					<input
-						className={styles.formInput}
+						className={styles.input}
 						type="text"
 						name="number"
+						autoComplete="off"
 						value={number}
 						onChange={this.handleChange}
 					/>
 				</label>
 
-				<button className={styles.contactFormButton} type="submit">
+				<button className={styles.button} type="submit">
 					Add contact
 				</button>
 			</form>
