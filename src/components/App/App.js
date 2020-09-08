@@ -1,10 +1,10 @@
 //Core
 import React, { Component } from 'react';
 //Components
-import Filter from '../Filter/Filter';
-import Section from '../Section/Section';
-import ContactForm from '../ContactForm/ContactForm';
-import ContactList from '../ContactList/ContactList';
+import Filter from '../Filter';
+import Section from '../Section';
+import ContactForm from '../ContactForm';
+import ContactList from '../ContactList';
 //Utils
 import { v4 as uuid } from 'uuid';
 
@@ -37,12 +37,12 @@ export class App extends Component {
 	getVisibleContacts = () => {
 		const { contacts, filter } = this.state;
 
-		return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
+		return contacts.filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase()));
 	};
 
 	removeContact = contactId => {
-		this.setState(prevState => ({
-			contacts: prevState.contacts.filter(({ id }) => id !== contactId),
+		this.setState(({ contacts }) => ({
+			contacts: contacts.filter(({ id }) => id !== contactId),
 		}));
 	};
 
@@ -62,8 +62,8 @@ export class App extends Component {
 				<Section title="Contacts">
 					{contacts.length > 1 && (
 						<Filter
-							title="Find contacts by name"
 							value={filter}
+							title="Find contacts by name"
 							onChangeFilter={this.handleChangeFilter}
 						/>
 					)}

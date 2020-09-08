@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //Components
-import ContactListItem from '../ContactListItem/ContactListItem';
+import ContactListItem from '../ContactListItem';
 //Styles
 import styles from './ContactList.module.css';
 
@@ -16,7 +16,13 @@ const ContactList = ({ contacts, onRemoveContact }) => (
 
 ContactList.propTypes = {
 	onRemoveContact: PropTypes.func.isRequired,
-	contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
+	contacts: PropTypes.arrayOf(
+		PropTypes.exact({
+			id: PropTypes.string.isRequired,
+			name: PropTypes.string.isRequired,
+			number: PropTypes.string.isRequired,
+		}).isRequired,
+	).isRequired,
 };
 
 export default ContactList;
